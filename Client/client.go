@@ -36,12 +36,19 @@ func requestUserInput() int {
 	}
 
 	fmt.Println("------->")
-	fmt.Printf("-------> Tranferring %s to chat room ID: %d\n", userName, chatRoomID)
+	fmt.Printf("-------> Tranferring %s to chat room ID: %d...\n", userName, chatRoomID)
 
 	return 1
 }
 
+func connectToChatRoom(chatRoomID int)
+
 func main() {
 	init_func()
-	requestUserInput()
+	chatRoomID := requestUserInput()
+	// portID := connectToChatRoom(chatRoomID)
+
+	// open new terminal connecting to the port ID and show chat
+	// current terminal acts as keyboard input for sending msgs or other cmds
+
 }
