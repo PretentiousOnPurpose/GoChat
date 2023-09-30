@@ -5,7 +5,12 @@
 
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"log"
+	"net"
+)
 
 func init_func() {
 	fmt.Println("> GoChat chat room")
@@ -35,13 +40,30 @@ func requestUserInput() int {
 
 	fmt.Println("> Processing...")
 	// check if valid chatRoomID
-	fmt.Printf("> Tranferring %s to chat room ID: %d...\n", userName, chatRoomID)
+
+	if validChatRoom(chatRoomID) == "valid" {
+		fmt.Printf("> Tranferring %s to chat room ID: %d...\n", userName, chatRoomID)
+	} else {
+		fmt.Printf("> Chat room ID: %d does not exist. Please try again.\n", chatRoomID)
+	}
 
 	return 1
 }
 
-func validChatRoom(chatRoomID int) {
+func validChatRoom(chatRoomID int) string {
+	conn, err := net.Dial("tcp", ":8192")
+	if err != nil {
+		log.Fatalln("Some is wrong with the Validation server!")
+	}
+	fmt.Println("Here")
+	fmt.Fprintf(conn, "%d", chatRoomID)
+	// time.Sleep(1)
+	fmt.Println("Here2")
 
+	data, err := bufio.NewReader(conn).ReadString('\n')
+	fmt.Println("Here3")
+	fmt.Println(data)
+	return data
 }
 
 func connectChatRoom(chatRoomID int) {
