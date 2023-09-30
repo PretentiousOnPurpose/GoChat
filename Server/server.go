@@ -16,6 +16,7 @@ func server_init() {
 func main() {
 	// Start server.
 	server_init()
+	validChatRoomServer_init()
 	// [print func]: List currently active chat rooms - their IDs and their initiating usernames
 	// start with init_func for every new user conn.
 

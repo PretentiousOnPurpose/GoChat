@@ -8,12 +8,10 @@ package main
 import "fmt"
 
 func init_func() {
-	fmt.Println("---> Welcome to PretentiousOnPurpose")
-	fmt.Println("-----> Premium CHAT ROOM")
-	fmt.Println("----->")
-	fmt.Println("-------> What would you like to do?")
-	fmt.Println("---------> 1. Start a new chat room")
-	fmt.Println("---------> 2. Join an existing chat room")
+	fmt.Println("> GoChat chat room")
+	fmt.Println("> What would you like to do?")
+	fmt.Println("> 1. Start a new chat room")
+	fmt.Println("> 2. Join an existing chat room")
 }
 
 func requestUserInput() int {
@@ -21,31 +19,38 @@ func requestUserInput() int {
 	var userName string
 	var chatRoomID int
 
-	fmt.Print("---------> User: ")
+	fmt.Print("> Response : ")
 	fmt.Scanln(&usrInput)
-	fmt.Print("---------> Enter your username: ")
+	fmt.Print("> Enter your username: ")
 	fmt.Scanln(&userName)
 
 	if usrInput == 1 {
 		// createNewChatRoom(&chatRoomID)
 		chatRoomID = 100001
 	} else {
-		fmt.Print("---------> Enter the chat room ID: ")
+		fmt.Print("> Enter the chat room ID: ")
 		fmt.Scanln(&chatRoomID)
 		// joinChatRoom(chatRoomID)
 	}
 
-	fmt.Println("------->")
-	fmt.Printf("-------> Tranferring %s to chat room ID: %d...\n", userName, chatRoomID)
+	fmt.Println("> Processing...")
+	// check if valid chatRoomID
+	fmt.Printf("> Tranferring %s to chat room ID: %d...\n", userName, chatRoomID)
 
 	return 1
 }
 
-func connectToChatRoom(chatRoomID int)
+func validChatRoom(chatRoomID int) {
+
+}
+
+func connectChatRoom(chatRoomID int) {
+
+}
 
 func main() {
 	init_func()
-	chatRoomID := requestUserInput()
+	_ = requestUserInput()
 	// portID := connectToChatRoom(chatRoomID)
 
 	// open new terminal connecting to the port ID and show chat
