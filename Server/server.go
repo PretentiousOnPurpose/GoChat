@@ -14,12 +14,6 @@ func server_init() {
 	// fmt.Println("-----> Number of chat rooms: " + getNumChatRooms())
 }
 
-func readReqText(conn net.Conn) string {
-	data, _ := bufio.NewReader(conn).ReadString('\n')
-
-	return data
-}
-
 func validChatRoomServer_init() {
 	server, err := net.Listen("tcp", ":8192")
 	if err != nil {
@@ -31,17 +25,13 @@ func validChatRoomServer_init() {
 		if err != nil {
 			log.Fatalln("Some is wrong with the connection request at Validation Server!")
 		}
+		reqText, _ := bufio.NewReader(conn).ReadString('\n')
 
-		reqText := readReqText(conn)
-
-		fmt.Println(reqText)
-
-		if reqText == "100001" {
-			fmt.Fprintf(conn, "valid")
+		if reqText == "100001\n" {
+			fmt.Fprintf(conn, "valid\n")
 		} else {
-			fmt.Fprintf(conn, "failed")
+			fmt.Fprintf(conn, "failed\n")
 		}
-
 	}
 
 }

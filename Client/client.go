@@ -41,7 +41,7 @@ func requestUserInput() int {
 	fmt.Println("> Processing...")
 	// check if valid chatRoomID
 
-	if validChatRoom(chatRoomID) == "valid" {
+	if validChatRoom(chatRoomID) == "valid\n" {
 		fmt.Printf("> Tranferring %s to chat room ID: %d...\n", userName, chatRoomID)
 	} else {
 		fmt.Printf("> Chat room ID: %d does not exist. Please try again.\n", chatRoomID)
@@ -51,18 +51,16 @@ func requestUserInput() int {
 }
 
 func validChatRoom(chatRoomID int) string {
+	// var data string
+
 	conn, err := net.Dial("tcp", ":8192")
 	if err != nil {
 		log.Fatalln("Some is wrong with the Validation server!")
 	}
-	fmt.Println("Here")
-	fmt.Fprintf(conn, "%d", chatRoomID)
-	// time.Sleep(1)
-	fmt.Println("Here2")
+	fmt.Fprintf(conn, "%d\n", chatRoomID)
 
-	data, err := bufio.NewReader(conn).ReadString('\n')
-	fmt.Println("Here3")
-	fmt.Println(data)
+	data, _ := bufio.NewReader(conn).ReadString('\n')
+
 	return data
 }
 
