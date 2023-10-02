@@ -5,13 +5,46 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"strconv"
+	"strings"
 )
+
+type user struct {
+	userName     string
+	ipAddr       string
+	downlinkPort int
+	uplinkPort   int
+}
+
+var activeChatRoom map[string][]user
+var numActiveChatRooms int
+var numCreations int
 
 func server_init() {
 	fmt.Println("---> PretentiousOnPurpose: chat room server")
 	fmt.Println("--->\n---> Current Status:")
-	// fmt.Println("-----> Number of chat rooms: " + getNumChatRooms())
-	// fmt.Println("-----> Number of chat rooms: " + getNumChatRooms())
+}
+
+func createNewChatRoom() int {
+	chatRoomID := strconv.Itoa(int(numCreations))
+	activeChatRoom[chatRoomID] = nil
+	numActiveChatRooms++
+	numCreations++
+
+	return numCreations - 1
+}
+func closeChatRoom(chatRoomID int) bool {
+	chatRoomID_str := strconv.Itoa(chatRoomID)
+	_, ok := activeChatRoom[chatRoomID_str]
+	delete(activeChatRoom, chatRoomID_str)
+
+	return ok
+}
+
+func validChatRoom(chatRoomID_str string) bool {
+	_, ok := activeChatRoom[chatRoomID_str]
+
+	return ok
 }
 
 func validChatRoomServer_init() {
@@ -26,8 +59,9 @@ func validChatRoomServer_init() {
 			log.Fatalln("Some is wrong with the connection request at Validation Server!")
 		}
 		reqText, _ := bufio.NewReader(conn).ReadString('\n')
+		reqText = strings.TrimSuffix(reqText, "\n")
 
-		if reqText == "100001\n" {
+		if validChatRoom(reqText) {
 			fmt.Fprintf(conn, "valid\n")
 		} else {
 			fmt.Fprintf(conn, "failed\n")
@@ -37,12 +71,5 @@ func validChatRoomServer_init() {
 }
 
 func main() {
-	// Start server.
-	// server_init()
 	validChatRoomServer_init()
-	// [print func]: List currently active chat rooms - their IDs and their initiating usernames
-	// start with init_func for every new user conn.
-
-	// init_func()
-	// usrInput := requestUserInput()
 }

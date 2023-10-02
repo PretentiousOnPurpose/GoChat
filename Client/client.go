@@ -30,8 +30,7 @@ func requestUserInput() int {
 	fmt.Scanln(&userName)
 
 	if usrInput == 1 {
-		// createNewChatRoom(&chatRoomID)
-		chatRoomID = 100001
+		chatRoomID = createNewChatRoom()
 	} else {
 		fmt.Print("> Enter the chat room ID: ")
 		fmt.Scanln(&chatRoomID)
@@ -39,7 +38,6 @@ func requestUserInput() int {
 	}
 
 	fmt.Println("> Processing...")
-	// check if valid chatRoomID
 
 	if validChatRoom(chatRoomID) == "valid\n" {
 		fmt.Printf("> Tranferring %s to chat room ID: %d...\n", userName, chatRoomID)
@@ -51,8 +49,6 @@ func requestUserInput() int {
 }
 
 func validChatRoom(chatRoomID int) string {
-	// var data string
-
 	conn, err := net.Dial("tcp", ":8192")
 	if err != nil {
 		log.Fatalln("Some is wrong with the Validation server!")
