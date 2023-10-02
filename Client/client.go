@@ -10,7 +10,16 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"strconv"
+	"strings"
 )
+
+type user struct {
+	userName     string
+	ipAddr       string
+	downlinkPort int
+	uplinkPort   int
+}
 
 func init_func() {
 	fmt.Println("> GoChat chat room")
@@ -38,14 +47,28 @@ func requestUserInput() int {
 	}
 
 	fmt.Println("> Processing...")
+	fmt.Printf("> Tranferring %s to chat room ID: %d...\n", userName, chatRoomID)
 
-	if validChatRoom(chatRoomID) == "valid\n" {
-		fmt.Printf("> Tranferring %s to chat room ID: %d...\n", userName, chatRoomID)
-	} else {
-		fmt.Printf("> Chat room ID: %d does not exist. Please try again.\n", chatRoomID)
-	}
+	// if validChatRoom(chatRoomID) == "valid\n" {
+	// 	fmt.Printf("> Tranferring %s to chat room ID: %d...\n", userName, chatRoomID)
+	// } else {
+	// 	fmt.Printf("> Chat room ID: %d does not exist. Please try again.\n", chatRoomID)
+	// }
 
 	return 1
+}
+
+func createNewChatRoom() int {
+	conn, err := net.Dial("tcp", ":8193")
+	if err != nil {
+		log.Fatalln("Some is wrong with the Creation server!")
+	}
+
+	chatRoomID_str, _ := bufio.NewReader(conn).ReadString('\n')
+	chatRoomID_str = strings.TrimSuffix(chatRoomID_str, "\n")
+	chatRoomID, _ := strconv.Atoi(chatRoomID_str)
+
+	return chatRoomID
 }
 
 func validChatRoom(chatRoomID int) string {

@@ -25,6 +25,23 @@ func server_init() {
 	fmt.Println("--->\n---> Current Status:")
 }
 
+func newChatRoomServer_init() {
+	server, err := net.Listen("tcp", ":8193")
+	if err != nil {
+		log.Fatalln("Some is wrong with the Creation server!")
+	}
+
+	for {
+		conn, err := server.Accept()
+		if err != nil {
+			log.Fatalln("Some is wrong with the connection request at Creation Server!")
+		}
+
+		chatRoomID := createNewChatRoom()
+		fmt.Fprintf(conn, "%d\n", chatRoomID)
+	}
+}
+
 func createNewChatRoom() int {
 	chatRoomID := strconv.Itoa(int(numCreations))
 	activeChatRoom[chatRoomID] = nil
@@ -71,5 +88,6 @@ func validChatRoomServer_init() {
 }
 
 func main() {
-	validChatRoomServer_init()
+	go validChatRoomServer_init()
+	newChatRoomServer_init()
 }
