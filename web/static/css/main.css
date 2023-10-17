@@ -63,31 +63,41 @@ header {
     overflow-y: scroll;
 }
 
-#cmd {
-    height: 3.5%;
+#cmdWindow {
+    height: 5%;
     width: 95%;
     border: 1px solid lightgrey;
     border-radius: 5px;
     margin-bottom: 0.75rem;
-    font-size: 1.25rem;
-    font-family: 'Abel', sans-serif;
+    font-size: 1rem;
+    font-family: 'Inconsolata', monospace;
     font-weight: 700;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     padding-left: 0.5rem;
 }
 
-#btns {
-    height: 10%;
-    width: 45%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
+#cmd {
+    height: 100%;
+    width: 90%;
 }
 
-#mic {
+#send {
+    height: 100%;
+    width: 10%;
+    margin: 1px solid black;
+    background-image: url("../images/send.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+
+/* #mic {
     height: 100%;
     width: 50%;
     background-image: url("../images/mic.png");
@@ -96,7 +106,7 @@ header {
     background-position: center;
     background-color: transparent;
     border: transparent;
-}
+} */
 
 #kb {
     height: 70%;

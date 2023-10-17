@@ -3,46 +3,19 @@ terminal = document.querySelector(".card-content");
 terminal.scrollTop = terminal.scrollHeight;
 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 
-function sendVoice(str) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "/voiceCtrl", true);
-  xhttp.onreadystatechange = function() {
-    if (!(this.readyState == 4 && this.status == 200)) {
-        // alert("You said: " + str + "\n\n" + "Server did not respond");
-    }
-  };
-  xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhttp.send("voiceStr=" + str);
-}
+document.querySelector("#send").addEventListener("click", sendMsg);
 
+async function sendMsg() {
+  termObj = document.querySelector("#terminal");
+  cmdObj = document.querySelector("#cmd")
 
-function startVoice() {
-  var textDisp = document.querySelector("#cmd");
-  console.log("Starting Voice Recording...");
-  if (window.hasOwnProperty('webkitSpeechRecognition')) {
-
-    var recognition = new webkitSpeechRecognition();
-
-    recognition.continuous = false;
-    recognition.interimResults = false;
-
-    recognition.lang = "en-US";
-    recognition.start();
-
-    recognition.onresult = function(e) {
-      console.log(typeof(e.results[0][0].transcript));
-      // alert(e.results[0][0].transcript);
-      textDisp.innerHTML = e.results[0][0].transcript;
-      sendVoice(e.results[0][0].transcript);
-      recognition.stop();
-    };
-
-    recognition.onerror = function(e) {
-      recognition.stop();
-    }
-
+  if (cmdObj.innerHTML !== "") {
+    termObj.innerHTML = termObj.innerHTML + "\n<p>$: " + cmdObj.innerHTML + "</p>" 
+    cmdObj.innerHTML = "";
   }
 }
-    
 
-document.querySelector("#mic").onclick = startVoice;
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
