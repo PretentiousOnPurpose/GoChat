@@ -35,7 +35,7 @@ header {
     display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     overflow: hidden;
     margin-bottom: 0.5rem;
 }
@@ -121,4 +121,13 @@ header {
 
 button:focus {
     outline: none;
+}
+
+.login-content {
+    height: 90%;
+    width: 60%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    /* align-items: cen; */
 }
