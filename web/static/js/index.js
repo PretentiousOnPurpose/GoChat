@@ -1,31 +1,10 @@
 
 terminal = document.querySelector(".card-content");
 terminal.scrollTop = terminal.scrollHeight;
-window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-// const WebSocket = require('ws');
 
 document.querySelector("#send").addEventListener("click", sendMsg);
 
-// const socket = new WebSocket("ws://localhost:8080");
 
-connect();
-
-function connect() {
-  ws = new WebSocket('ws://localhost:8080');
-  setTimeout(bindEvents, 1000);
-  setReadyState();
-}
-
-function bindEvents() {
-  ws.onopen = function() {
-    console.log('onopen called');
-    setReadyState();
-  };
-}
-
-function setReadyState() {
-  console.log('ws.readyState: ' + ws.readyState);
-}
 
 function sendMsg() {
   termObj = document.querySelector("#terminal");
@@ -40,11 +19,33 @@ function sendMsg() {
 
     cmdObj.innerHTML = "";
     //sendMsgToLord(msg)
-    console.log("Send 1");
-    
-    ws.onopen = () => ws.send("Message");
-    
-    console.log("Send 2");
+    // fetch("http://127.0.0.1:8080/data", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     userId: 1,
+    //     title: "Fix my bugs",
+    //     completed: false
+    //   }),
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    //     "Access-Control-Allow-Origin" : "*"
+    //   }
+    // });
+
+    $.post({
+      // type: "POST",
+      url: 'http://127.0.0.1:8080/data',
+      data:{"name":"Yash"},
+      async:true,
+      contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+      dataType : 'jsonp',   //you may use jsonp for cross origin request
+      crossDomain:true,
+      success: function(data, status, xhr) {
+        alert(xhr.getResponseHeader('Location'));
+      }
+    });
+
+    console.log("Worked");
 
   }
 }

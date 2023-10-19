@@ -131,3 +131,8 @@ button:focus {
     justify-content: center;
     /* align-items: cen; */
 }
+
+#loginBtn {
+    background-color: rgb(66, 162, 197);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
