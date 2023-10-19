@@ -16,36 +16,22 @@ function sendMsg() {
     } else {
       termObj.innerHTML = termObj.innerHTML + "\n<p>You: " + cmdObj.innerHTML + "</p>" 
     }
-
-    cmdObj.innerHTML = "";
-    //sendMsgToLord(msg)
-    // fetch("http://127.0.0.1:8080/data", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     userId: 1,
-    //     title: "Fix my bugs",
-    //     completed: false
-    //   }),
-    //   headers: {
-    //     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-    //     "Access-Control-Allow-Origin" : "*"
-    //   }
-    // });
-
-    $.post({
-      // type: "POST",
+   $.ajax({
+      mode: "cors",
+      method: "POST",
       url: 'http://127.0.0.1:8080/data',
-      data:{"name":"Yash"},
+      data:{"name":cmdObj.innerHTML},
       async:true,
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-      dataType : 'jsonp',   //you may use jsonp for cross origin request
+      dataType : 'json',   //you may use jsonp for cross origin request
       crossDomain:true,
       success: function(data, status, xhr) {
         alert(xhr.getResponseHeader('Location'));
       }
     });
 
-    console.log("Worked");
+    cmdObj.innerHTML = "";
 
+ 
   }
 }
