@@ -129,10 +129,25 @@ button:focus {
     display: flex;
     flex-flow: column;
     justify-content: center;
-    /* align-items: cen; */
+    align-items: center;
 }
 
 #loginBtn {
     background-color: rgb(66, 162, 197);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    height: 30px;
+    width: 200px;
+    border: 1px solid  rgb(66, 162, 197);
+}
+
+.loginPlaceholder {
+    height: 30px;
+    width: 200px;
+    /* border-radius: px; */
+    /* border-color: lightgray; */
+    /* font-size: small; */
+    border: 1px solid lightgray;
+    background-color: transparent;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 10px;
 }

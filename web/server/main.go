@@ -8,7 +8,7 @@ import (
 )
 
 func Cors(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=ascii")
+	w.Header().Set("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8; charset=ascii")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "POST,GET,OPTIONS")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type,access-control-allow-origin, access-control-allow-headers")
@@ -17,23 +17,15 @@ func Cors(w http.ResponseWriter, r *http.Request) {
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
 
-	// fmt.Println("The Server was Pinged!")
-	// res, err := httputil.DumpRequest(r, true)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// fmt.Print(string(res))
-
 	err := r.ParseForm()
 	if err != nil {
 		fmt.Println("Error parsing form")
 	}
-	fmt.Println(r.PostForm["name"][0])
+	fmt.Println(r.PostForm["username"][0])
+	fmt.Println(r.PostForm["passcode"][0])
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
-	// w.Header().Set("Access-Control-Allow-Origin", "*")
-	// w.Header().Set("Access-Control-Allow-Headers", "Content-Type,access-control-allow-origin, access-control-allow-headers")
 	resp := make(map[string]string)
 	resp["message"] = "Status OK"
 	jsonResp, err := json.Marshal(resp)
@@ -47,7 +39,8 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/plm/cors", Cors)
+	mux.HandleFunc("/cors", Cors)
 	mux.HandleFunc("/data", handleRequest)
+	mux.HandleFunc("/login", handleRequest)
 	http.ListenAndServe(":8080", mux)
 }
