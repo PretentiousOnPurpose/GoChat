@@ -30,16 +30,18 @@ header {
 
 
 .card {
-    height: 70%;
+    height: 89%;
     width: 95%;
     border: 1px solid lightgrey;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
-    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    border-bottom: none;
 }
 
 .card-header {
@@ -66,10 +68,12 @@ header {
 }
 
 #cmdWindow {
-    height: 5%;
+    height: 6%;
     width: 95%;
     border: 1px solid lightgrey;
-    border-radius: 5px;
+    background-color: rgb(246, 245, 245);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     margin-bottom: 0.75rem;
     font-size: 1rem;
     font-family: 'Trebuchet MS', monospace;
@@ -87,7 +91,7 @@ header {
 
 #send {
     height: 100%;
-    width: 10%;
+    width: 15%;
     margin: 1px solid black;
     background-image: url("../images/send.png");
     background-size: contain;
@@ -97,8 +101,6 @@ header {
     border: 1px solid gray;
     border-radius: 5px;
 }
-
-
 
 #kb {
     height: 70%;
