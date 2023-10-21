@@ -4,9 +4,35 @@
 
 document.querySelector("#loginBtn").addEventListener("click", sendLoginDetails);
 
+function loginFailed() {
+  statusObj = document.querySelector("status-indicator");
+  statusHdrObj = document.querySelector(".card-header p");
+
+  statusObj.setAttribute('negative', '');
+  statusObj.removeAttribute('pulse');
+  statusHdrObj.innerHTML = "Connection failed to My Lord";
+}
+
+function loginPassed() {
+  statusObj = document.querySelector("status-indicator");
+  statusHdrObj = document.querySelector(".card-header p");
+
+  statusObj.setAttribute('positive', '');
+  // statusObj.removeAttribute('pulse');
+  statusHdrObj.innerHTML = "The Lord is with you";
+}
+
 function sendLoginDetails() {
   userNameObj = document.querySelector("#username");
-  passCodeObj = document.querySelector("#passcode")
+  passCodeObj = document.querySelector("#passcode");
+
+  statusObj = document.querySelector("status-indicator");
+  statusHdrObj = document.querySelector(".card-header p");
+
+  statusObj.setAttribute('active', '');
+  statusObj.setAttribute('pulse', '');
+
+  statusHdrObj.innerHTML = "Connecting to My Lord...";
 
    $.ajax({
       mode: "cors",
@@ -26,4 +52,5 @@ function sendLoginDetails() {
     });
 
     console.log("Done");
+    setTimeout(loginPassed, 2000);
 }

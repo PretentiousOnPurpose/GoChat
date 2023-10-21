@@ -1,3 +1,5 @@
+@import 'status-indicator';
+
 html, body, div, header, p {
     padding: 0;
     margin: 0;
@@ -41,24 +43,24 @@ header {
 }
 
 .card-header {
-    height: 10%;
+    height: 6%;
     border-bottom: 1px solid lightgrey;
     width: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;        
-    font-size: 1.25rem;
-    font-family: 'Abel', sans-serif;
-    font-weight: 700;
+    font-size: 0.95rem;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: 600;
     color: #4a3b3b;
 }
 
 .card-content {
-    height: 90%;
+    height: 94%;
     width: 100%;
     padding: 1rem;
-    font-family: 'Inconsolata', monospace;
+    font-family: 'Trebuchet MS', monospace;
     font-size: 1rem;
     overflow-y: scroll;
 }
@@ -70,7 +72,7 @@ header {
     border-radius: 5px;
     margin-bottom: 0.75rem;
     font-size: 1rem;
-    font-family: 'Inconsolata', monospace;
+    font-family: 'Trebuchet MS', monospace;
     font-weight: 700;
     display: flex;
     justify-content: center;
@@ -97,16 +99,6 @@ header {
 }
 
 
-/* #mic {
-    height: 100%;
-    width: 50%;
-    background-image: url("../images/mic.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: transparent;
-    border: transparent;
-} */
 
 #kb {
     height: 70%;
@@ -137,6 +129,9 @@ button:focus {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     height: 30px;
     width: 200px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #4a3b3b;
     border: 1px solid  rgb(66, 162, 197);
 }
 
@@ -151,3 +146,5 @@ button:focus {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-bottom: 10px;
 }
+
+
