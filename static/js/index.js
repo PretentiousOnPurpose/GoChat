@@ -19,7 +19,7 @@ function sendMsg() {
    $.ajax({
       mode: "cors",
       method: "POST",
-      url: 'http://127.0.0.1:8080/data',
+      url: 'http://localhost:9000/data',
       data:{"name":cmdObj.innerHTML},
       async:true,
       contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
